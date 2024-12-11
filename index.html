@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="icon.png">
     <meta name="description" content="Online Registration Form">
     <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="manifest.json">
     <title>Online Registration Form</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,5 +59,25 @@
         </form>
         <div id="result" class="result-container"></div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#registrationForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                $.ajax({
+                    url: 'process.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        if (data.success) {
+                            $('#result').html(data.message);
+                        } else {
+                            $('#result').html('<p>There was an error processing your request.</p>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
