@@ -12,12 +12,12 @@ try {
     // Check if the request is POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validate and sanitize input data
-        $fullName = filter_input(INPUT_POST, 'fullName', FILTER_SANITIZE_STRING);
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
-        $dob = filter_input(INPUT_POST, 'dob', FILTER_SANITIZE_STRING);
-        $gender = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_STRING);
-        $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING);
+        $fullName = htmlspecialchars($_POST['fullName']);
+        $email = htmlspecialchars($_POST['email']);
+        $phone = htmlspecialchars($_POST['phone']);
+        $dob = htmlspecialchars($_POST['dob']);
+        $gender = htmlspecialchars($_POST['gender']);
+        $address = htmlspecialchars($_POST['address']);
 
         // Additional validation
         if (!$fullName || strlen($fullName) < 2) {
