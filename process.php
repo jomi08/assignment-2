@@ -106,23 +106,8 @@ try {
             'success' => true,
             'message' => $formattedData
         ]);
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        // New endpoint to retrieve stored data
-        $filePath = 'data.json';
-        if (file_exists($filePath)) {
-            $storedData = json_decode(file_get_contents($filePath), true);
-            echo json_encode([
-                'success' => true,
-                'data' => $storedData
-            ]);
-        } else {
-            echo json_encode([
-                'success' => false,
-                'message' => 'No data found'
-            ]);
-        }
     } else {
-        throw new Exception('Invalid request method. Only POST and GET requests are allowed.');
+        throw new Exception('Invalid request method. Only POST requests are allowed.');
     }
 
 } catch (Exception $e) {
