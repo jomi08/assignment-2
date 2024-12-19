@@ -27,6 +27,12 @@ function submitForm(event) {
                     </div>
                 `;
                 resultContainer.classList.add('success');
+
+                // Remove the message after 4 seconds
+                setTimeout(() => {
+                    resultContainer.innerHTML = '';
+                    resultContainer.classList.remove('success');
+                }, 4000);
             } else {
                 // Display an error message
                 resultContainer.innerHTML = `
